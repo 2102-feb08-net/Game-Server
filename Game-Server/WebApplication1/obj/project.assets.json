@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\csamu\\source\\repos\\Game-Server\\Game-Server\\WebApplication1\\WebApplication1.csproj",
-      "projectName": "WebApplication1",
-      "projectPath": "C:\\Users\\csamu\\source\\repos\\Game-Server\\Game-Server\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "C:\\Users\\csamu\\source\\repos\\Game-Server\\Game-Server\\WebApplication1\\GameApi.csproj",
+      "projectName": "GameApi",
+      "projectPath": "C:\\Users\\csamu\\source\\repos\\Game-Server\\Game-Server\\WebApplication1\\GameApi.csproj",
       "packagesPath": "C:\\Users\\csamu\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\csamu\\source\\repos\\Game-Server\\Game-Server\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",

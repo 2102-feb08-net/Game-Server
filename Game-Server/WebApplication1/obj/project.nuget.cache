@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8uZjvApO3A7fIKbS5gSR6GxnoIDK9390DmlLfHqsuoMjCe1QfsPicNml1yh/pC54/ZZF3I4i6/lUBkVvrhBvqA==",
+  "dgSpecHash": "JxjoZToDtt5xGiW15+Oja9/fvXgcVA1qfm/O33ugcHCsZYCMTPokLprCrAi8wAfkYa82pku4sjkQ7NPq11Mf1Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\csamu\\source\\repos\\Game-Server\\Game-Server\\WebApplication1\\WebApplication1.csproj",
+  "projectFilePath": "C:\\Users\\csamu\\source\\repos\\Game-Server\\Game-Server\\WebApplication1\\GameApi.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
