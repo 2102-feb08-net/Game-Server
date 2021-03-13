@@ -3,7 +3,7 @@ trigger:
 
 schedules:
 - cron: '0/30 * * * *'
-  displayName: Daily midnight build
+  displayName: 30 minute scheduled build
   branches:
     include:
     - main
