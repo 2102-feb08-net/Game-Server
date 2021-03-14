@@ -1,0 +1,15 @@
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\bin\Debug\net5.0\DataAccess.deps.json
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\bin\Debug\net5.0\DataAccess.dll
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\bin\Debug\net5.0\ref\DataAccess.dll
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\bin\Debug\net5.0\DataAccess.pdb
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\obj\Debug\net5.0\DataAccess.csprojAssemblyReference.cache
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\obj\Debug\net5.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\obj\Debug\net5.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\obj\Debug\net5.0\DataAccess.AssemblyInfo.cs
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\obj\Debug\net5.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\obj\Debug\net5.0\DataAccess.dll
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\obj\Debug\net5.0\ref\DataAccess.dll
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\obj\Debug\net5.0\DataAccess.pdb
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\bin\Debug\net5.0\DataAccess.runtimeconfig.json
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\bin\Debug\net5.0\DataAccess.runtimeconfig.dev.json
+C:\Users\csamu\source\repos\Game-Server\Game-Server-Solution\DataAccess\obj\Debug\net5.0\DataAccess.genruntimeconfig.cache
