@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameAPI", "GameAPI\GameAPI.csproj", "{3039701F-3AC9-40D8-ACAE-FC326D892BA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{579D6708-A479-4FAA-B57C-9EEE0B36EC27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{579D6708-A479-4FAA-B57C-9EEE0B36EC27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{C025404B-08C0-4457-8FB5-F894ED9A4627}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{579D6708-A479-4FAA-B57C-9EEE0B36EC27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{579D6708-A479-4FAA-B57C-9EEE0B36EC27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{579D6708-A479-4FAA-B57C-9EEE0B36EC27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C025404B-08C0-4457-8FB5-F894ED9A4627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C025404B-08C0-4457-8FB5-F894ED9A4627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C025404B-08C0-4457-8FB5-F894ED9A4627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C025404B-08C0-4457-8FB5-F894ED9A4627}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
