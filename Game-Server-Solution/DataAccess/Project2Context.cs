@@ -23,6 +23,7 @@ namespace DataAccess
         public virtual DbSet<LootTable> LootTables { get; set; }
         public virtual DbSet<Lootline> Lootlines { get; set; }
         public virtual DbSet<Mob> Mobs { get; set; }
+        public virtual DbSet<MobSpawn> MobSpawns { get; set; }
         public virtual DbSet<Player> Players { get; set; }
         public virtual DbSet<Weapon> Weapons { get; set; }
 
@@ -185,6 +186,25 @@ namespace DataAccess
                     .HasForeignKey(d => d.LootTableId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Mob__loot_table___7C4F7684");
+            });
+
+            modelBuilder.Entity<MobSpawn>(entity =>
+            {
+                entity.ToTable("MobSpawn");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.ModId).HasColumnName("mod_id");
+
+                entity.Property(e => e.SpawnX).HasColumnName("spawn_x");
+
+                entity.Property(e => e.SpawnY).HasColumnName("spawn_y");
+
+                entity.HasOne(d => d.Mod)
+                    .WithMany(p => p.MobSpawns)
+                    .HasForeignKey(d => d.ModId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__MobSpawn__mod_id__07C12930");
             });
 
             modelBuilder.Entity<Player>(entity =>

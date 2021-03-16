@@ -11,6 +11,7 @@ namespace DataAccess
         {
             KillStats = new HashSet<KillStat>();
             LootTables = new HashSet<LootTable>();
+            MobSpawns = new HashSet<MobSpawn>();
         }
 
         public int Id { get; set; }
@@ -24,5 +25,6 @@ namespace DataAccess
         public virtual LootTable LootTable { get; set; }
         public virtual ICollection<KillStat> KillStats { get; set; }
         public virtual ICollection<LootTable> LootTables { get; set; }
+        public virtual ICollection<MobSpawn> MobSpawns { get; set; }
     }
 }

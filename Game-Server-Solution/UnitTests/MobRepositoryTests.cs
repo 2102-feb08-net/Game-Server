@@ -1,4 +1,4 @@
-using System;
+using ntem;
 using Xunit;
 using DataAccess;
 
@@ -9,7 +9,7 @@ namespace UnitTests
         [Fact]
         public void Test1()
         {
-            MobRepository mobRepository = new MobRepository(context: Project2Context);
+          
         }
     }
 }
