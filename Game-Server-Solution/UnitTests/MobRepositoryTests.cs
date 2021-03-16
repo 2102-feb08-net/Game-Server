@@ -9,7 +9,7 @@ namespace UnitTests
         [Fact]
         public void Test1()
         {
-          
+            MobRepository mobRepository = new MobRepository();
         }
     }
 }
