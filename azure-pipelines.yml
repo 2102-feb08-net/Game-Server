@@ -44,12 +44,12 @@ steps:
   displayName: dotnet build
   workingDirectory: 'Game-Server-Solution'
 
-# - task: DotNetCoreCLI@2
-#   displayName: dotnet test
-#   inputs:
-#     command: 'test'
-#     arguments: '--configuration $(buildConfiguration) --collect "xplat code coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura,opencover'
-#     workingDirectory: 'Game-Server-Solution'
+- task: DotNetCoreCLI@2
+  displayName: dotnet test
+  inputs:
+    command: 'test'
+    arguments: '--configuration $(buildConfiguration) --collect "xplat code coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura,opencover'
+    workingDirectory: 'Game-Server-Solution'
 
 
 - task: SonarCloudAnalyze@1
