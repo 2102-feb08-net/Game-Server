@@ -7,11 +7,11 @@ trigger:
       - Game-Server-Solution
 
 schedules:
-- cron: '0/30 * * * *'
+- cron: '*/30 * * * *'
   displayName: 30 minute scheduled build
   branches:
     include:
-    - 'Game-Server-Solution'
+    - main
 
 pool:
   vmImage: 'ubuntu-latest'
