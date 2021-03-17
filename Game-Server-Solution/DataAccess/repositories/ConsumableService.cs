@@ -13,12 +13,13 @@ namespace DataAccess.repositories
         public ConsumableService(IItemRepository itemRepository)
         {
             _itemRepository = itemRepository;
-            //randomGen = new Random();
         }
 
         public Consumable GetRandomConsumable()
         {
-            throw new NotImplementedException();
+            List<Consumable> consumables = _itemRepository.GetAllConsumables();
+            Random gen = new Random();
+            return _itemRepository.GetConsumable(gen.Next(consumables.Count));
         }
     }
 }
