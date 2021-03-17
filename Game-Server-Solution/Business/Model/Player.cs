@@ -33,7 +33,18 @@ namespace Business.Model
             get => _username;
             set 
             {
-                throw new NotImplementedException();
+                if (!value.All(Char.IsLetterOrDigit))
+                {
+                    throw new ArgumentException("Can only input English letters and numbers for usernames");
+                }
+                else if (value.Length < 5 || value.Length > 15)
+                {
+                    throw new ArgumentException("Input size must be 5-15 for usernames");
+                }
+                else
+                {
+                    _username = value;
+                }
             } 
         }
 
@@ -46,7 +57,18 @@ namespace Business.Model
             get => _password; 
             set
             {
-                throw new NotImplementedException();
+                if (value.Length < 5 || value.Length > 15)
+                {
+                    throw new ArgumentException("Input size must be 5-15 for passwords");
+                }
+                else if (value.Any(Char.IsWhiteSpace))
+                {
+                    throw new ArgumentException("Passwords cannot contain spaces");
+                }
+                else
+                {
+                    _password = value;
+                }
             }
         }
 

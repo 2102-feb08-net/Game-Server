@@ -36,7 +36,7 @@ namespace Business.Model
         /// </summary>
         public void UpdateQuantity()
         {
-            throw new NotImplementedException();
+            Quantity++;
         }
     }
 }

@@ -32,7 +32,18 @@ namespace Business.Model
             get => _characterName;
             set
             {
-                throw new NotImplementedException();
+                if (!value.All(Char.IsLetterOrDigit))
+                {
+                    throw new ArgumentException("Can only input English letters and numbers for character names");
+                }
+                else if (value.Length < 3 || value.Length > 10)
+                {
+                    throw new ArgumentException("Input size must be 3-10 for usernames");
+                }
+                else
+                {
+                    _characterName = value;
+                }
             } 
         }
 
@@ -45,7 +56,14 @@ namespace Business.Model
             get => _exp;
             set
             {
-                throw new NotImplementedException();
+                if (value < 0)
+                {
+                    throw new ArgumentException("Cannot set character exp < 0");
+                }
+                else
+                {
+                    _exp = value;
+                }
             }
         }
 
@@ -58,7 +76,14 @@ namespace Business.Model
             get => _health;
             set
             {
-                throw new NotImplementedException();
+                if (value < 0)
+                {
+                    throw new ArgumentException("Cannot set character health < 0");
+                }
+                else
+                {
+                    _health = value;
+                }
             }
         }
 
@@ -71,7 +96,14 @@ namespace Business.Model
             get => _attack;
             set
             {
-                throw new NotImplementedException();
+                if (value < 0)
+                {
+                    throw new ArgumentException("Cannot set character attack < 0");
+                }
+                else
+                {
+                    _attack = value;
+                }
             }
         }
 
@@ -84,7 +116,14 @@ namespace Business.Model
             get => _defense;
             set
             {
-                throw new NotImplementedException();
+                if (value < 0)
+                {
+                    throw new ArgumentException("Cannot set character defense < 0");
+                }
+                else
+                {
+                    _defense = value;
+                }
             }
         }
 
@@ -97,7 +136,14 @@ namespace Business.Model
             get => _mana;
             set
             {
-                throw new NotImplementedException();
+                if (value < 0)
+                {
+                    throw new ArgumentException("Cannot set character mana < 0");
+                }
+                else
+                {
+                    _mana = value;
+                }
             }
         }
 
