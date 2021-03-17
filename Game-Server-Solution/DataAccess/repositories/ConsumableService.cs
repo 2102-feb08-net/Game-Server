@@ -16,9 +16,9 @@ namespace DataAccess.repositories
             //randomGen = new Random();
         }
 
-        public void GetRandomConsumable()
+        public Consumable GetRandomConsumable()
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

@@ -10,24 +10,24 @@ namespace DataAccess
 
     public class MobRepository : IMobRepository
     {
-        private readonly Project2Context _context;
-        public MobRepository(Project2Context context)
-        {
-            _context = context;
-        }
+        //private readonly Project2Context _context;
+        //public MobRepository(Project2Context context)
+        //{
+        //    _context = context;
+        //}
 
-        public List<MobSpawnDTO> GetMobspawns()
-        {
-            var results = _context.MobSpawns.Include(x => x.Mod); ;
+        //public List<MobSpawnDTO> GetMobspawns()
+        //{
+        //    var results = _context.MobSpawns.Include(x => x.Mod); ;
 
-            List<MobSpawnDTO> mobspawns = new List<MobSpawnDTO>();
+        //    List<MobSpawnDTO> mobspawns = new List<MobSpawnDTO>();
 
-            foreach (var result in results)
-            {
-                mobspawns.Add(new MobSpawnDTO() { Mob = result.Mod,SpawnX=result.SpawnX,SpawnY = result.SpawnY});
-            }
+        //    foreach (var result in results)
+        //    {
+        //        mobspawns.Add(new MobSpawnDTO() { Mob = result.Mod,SpawnX=result.SpawnX,SpawnY = result.SpawnY});
+        //    }
 
-            return mobspawns;
-        }
+        //    return mobspawns;
+        //}
     }
 }

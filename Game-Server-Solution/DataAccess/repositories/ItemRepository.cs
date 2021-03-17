@@ -14,29 +14,35 @@ namespace DataAccess.repositories
         {
             _context = context;
         }
-        public IEnumerable<Weapon> GetAllWeapons()
+        public List<Weapon> GetAllWeapons()
         {
-            throw new NotImplementedException();
+            List<Weapon> weapons = _context.Weapons
+                .Select(c => c).ToList();
+            return weapons;
         }
 
         public Weapon GetWeapon(int id)
         {
-            throw new NotImplementedException();
+             Weapon weapon = _context.Weapons
+                .Select(w => w)
+                .Where(w => w.Id == id).First();
+
+            return weapon;
         }
 
-        public IEnumerable<Consumable> GetAllConsumables()
+        public List<Consumable> GetAllConsumables()
         {
-            throw new NotImplementedException();
+            List<Consumable> consumables = _context.Consumables
+                .Select(c => c).ToList();
+            return consumables;
         }
 
         public Consumable GetConsumable(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Consumable GetRandomConsumable()
-        {
-            throw new NotImplementedException();
+            Consumable consumable = _context.Consumables
+                .Select(c => c)
+                .Where(c => c.Id == id).First();
+            return consumable;
         }
     }
 }

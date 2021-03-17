@@ -27,7 +27,7 @@ namespace UnitTests
             };
 
             var mockRepo = new Mock<IItemRepository>();
-            mockRepo.Setup(r => r.GetAllConsumables()).Returns(consumables).Verifiable();
+            //mockRepo.Setup(r => r.GetAllConsumables()).Returns(consumables).Verifiable();
             mockRepo.Setup(r => r.GetConsumable(It.IsAny<int>())).Verifiable();
 
             var consumableService = new ConsumableService(mockRepo.Object);

@@ -8,17 +8,13 @@ namespace DataAccess.repositories
 {
     public interface IItemRepository
     {
-        IEnumerable<Weapon> GetAllWeapons();
+        List<Weapon> GetAllWeapons();
 
         Weapon GetWeapon(int id);
 
-        IEnumerable<Consumable> GetAllConsumables();
+        List<Consumable> GetAllConsumables();
 
         Consumable GetConsumable(int id);
 
-        Consumable GetRandomConsumable();
-
-
- 
     }
 }
