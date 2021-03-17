@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,10 +16,18 @@ namespace DataAccess
             _context = context;
         }
 
-        public List<Mobspawn> GetMobspawns()
+        public List<MobSpawnDTO> GetMobspawns()
         {
-            var results = _context.Mo
-            return new List<Mobspawn>();
+            var results = _context.MobSpawns.Include(x => x.Mod); ;
+
+            List<MobSpawnDTO> mobspawns = new List<MobSpawnDTO>();
+
+            foreach (var result in results)
+            {
+                mobspawns.Add(new MobSpawnDTO() { Mob = result.Mod,SpawnX=result.SpawnX,SpawnY = result.SpawnY});
+            }
+
+            return mobspawns;
         }
     }
 }
