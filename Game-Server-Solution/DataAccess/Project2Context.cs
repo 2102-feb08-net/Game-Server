@@ -90,25 +90,27 @@ namespace DataAccess
 
             modelBuilder.Entity<KillStat>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.ModId).HasColumnName("mod_id");
+                entity.Property(e => e.MobId).HasColumnName("mob_id");
 
-                entity.Property(e => e.UserId).HasColumnName("user_id");
+                entity.Property(e => e.PlayerId).HasColumnName("player_id");
 
-                entity.HasOne(d => d.Mod)
+                entity.Property(e => e.Quantity)
+                    .HasColumnName("quantity")
+                    .HasDefaultValueSql("((0))");
+
+                entity.HasOne(d => d.Mob)
                     .WithMany(p => p.KillStats)
-                    .HasForeignKey(d => d.ModId)
+                    .HasForeignKey(d => d.MobId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__KillStats__mod_i__00200768");
+                    .HasConstraintName("FK__KillStats__mob_i__2180FB33");
 
-                entity.HasOne(d => d.User)
+                entity.HasOne(d => d.Player)
                     .WithMany(p => p.KillStats)
-                    .HasForeignKey(d => d.UserId)
+                    .HasForeignKey(d => d.PlayerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__KillStats__user___7F2BE32F");
+                    .HasConstraintName("FK__KillStats__playe__208CD6FA");
             });
 
             modelBuilder.Entity<LootLine>(entity =>
