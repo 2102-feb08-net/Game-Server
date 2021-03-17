@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class Mobspawn
+    public class MobSpawnDTO
     {
-        public int SpawnX { get; set; }
-        public int SpawnY { get; set; }
+        public double SpawnX { get; set; }
+        public double SpawnY { get; set; }
         public Mob Mob { get; set; }
     }
 }
