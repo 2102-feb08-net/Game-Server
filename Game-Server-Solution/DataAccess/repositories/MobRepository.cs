@@ -17,7 +17,7 @@ namespace DataAccess
 
         public List<Mobspawn> GetMobspawns()
         {
-            var results = _context.Mo
+            //var results = _context.Mo
             return new List<Mobspawn>();
         }
     }
