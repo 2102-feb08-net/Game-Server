@@ -8,6 +8,6 @@ namespace DataAccess.repositories
 {
     public interface IConsumableService
     {
-        public void GetRandomConsumable();
+        public Consumable GetRandomConsumable();
     }
 }

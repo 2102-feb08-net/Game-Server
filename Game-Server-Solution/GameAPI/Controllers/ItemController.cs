@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DataAccess.repositories;
 using DataAccess;
 
+
 namespace GameAPI.Controllers
 {
     [ApiController]
@@ -14,9 +15,12 @@ namespace GameAPI.Controllers
     {
         private readonly IItemRepository _itemRepository;
 
-        public ItemController(IItemRepository itemRepository)
+        private readonly IConsumableService _consumableService;
+
+        public ItemController(IItemRepository itemRepository, IConsumableService consumableService)
         {
             _itemRepository = itemRepository;
+            _consumableService = consumableService;
         }
 
         [HttpGet("/api/weapons")]
@@ -46,7 +50,7 @@ namespace GameAPI.Controllers
         [HttpGet("/api/consumables/random")]
         public Consumable GetRandomConsumable()
         {
-            return _itemRepository.GetRandomConsumable();
+            return _consumableService.GetRandomConsumable();
         }
     }
 }
