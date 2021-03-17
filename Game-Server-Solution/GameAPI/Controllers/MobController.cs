@@ -14,15 +14,15 @@ namespace GameAPI.Controllers
     [ApiController]
     public class MobController : ControllerBase
     {
-        // private readonly IMobRepository _mobRepository;
+        private readonly IMobRepository _mobRepository;
 
-        /// <summary>
-        /// Get mob repository.
-        /// </summary>
-        //public MobController(IMobRepository mobRepository)
-        //{
-        //    _mobRepository = mobRepository;
-        //}
+        ///////// <summary>
+        ///////// Get mob repository.
+        ///////// </summary>
+        public MobController(IMobRepository mobRepository)
+        {
+           _mobRepository = mobRepository;
+        }
 
         /// <summary>
         /// Set and save mob stats to databse.
@@ -47,13 +47,11 @@ namespace GameAPI.Controllers
         /// <summary>
         /// Get list of mobs with their stats and spawn location.
         /// </summary>
-        //[HttpGet("api/maze/mobspawn")]
-        //public List<Mob> LoadMobs()
-        //{
-        //    return _mobRepository.GetMobSpawns();
-        //}
-
-
+        [HttpGet("api/mobspawns")]
+        public IActionResult LoadMobs()
+        {
+            return Ok(_mobRepository.GetMobspawns());
+        }
         /// <summary>
         /// Get Loot of Mob given a MobID.
         /// </summary>
