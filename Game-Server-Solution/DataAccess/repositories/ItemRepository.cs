@@ -8,6 +8,12 @@ namespace DataAccess.repositories
 {
     public class ItemRepository : IItemRepository
     {
+        private readonly Project2Context _context;
+
+        public ItemRepository(Project2Context context)
+        {
+            _context = context;
+        }
         public IEnumerable<Weapon> GetAllWeapons()
         {
             throw new NotImplementedException();
