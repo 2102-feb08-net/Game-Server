@@ -9,7 +9,7 @@ namespace DataAccess
     {
         public Weapon()
         {
-            Lootlines = new HashSet<Lootline>();
+            LootLines = new HashSet<LootLine>();
         }
 
         public int Id { get; set; }
@@ -20,6 +20,6 @@ namespace DataAccess
         public int? LevelRequirement { get; set; }
         public string Rarity { get; set; }
 
-        public virtual ICollection<Lootline> Lootlines { get; set; }
+        public virtual ICollection<LootLine> LootLines { get; set; }
     }
 }

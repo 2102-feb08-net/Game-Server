@@ -20,8 +20,8 @@ namespace DataAccess
         public virtual DbSet<Character> Characters { get; set; }
         public virtual DbSet<Consumable> Consumables { get; set; }
         public virtual DbSet<KillStat> KillStats { get; set; }
+        public virtual DbSet<LootLine> LootLines { get; set; }
         public virtual DbSet<LootTable> LootTables { get; set; }
-        public virtual DbSet<Lootline> Lootlines { get; set; }
         public virtual DbSet<Mob> Mobs { get; set; }
         public virtual DbSet<MobSpawn> MobSpawns { get; set; }
         public virtual DbSet<Player> Players { get; set; }
@@ -111,32 +111,16 @@ namespace DataAccess
                     .HasConstraintName("FK__KillStats__user___7F2BE32F");
             });
 
-            modelBuilder.Entity<LootTable>(entity =>
+            modelBuilder.Entity<LootLine>(entity =>
             {
-                entity.ToTable("LootTable");
+                entity.ToTable("LootLine");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.MobId).HasColumnName("mob_id");
-
-                entity.HasOne(d => d.Mob)
-                    .WithMany(p => p.LootTables)
-                    .HasForeignKey(d => d.MobId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LootTable__mob_i__6FE99F9F");
-            });
-
-            modelBuilder.Entity<Lootline>(entity =>
-            {
-                entity.ToTable("Lootline");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
-
                 entity.Property(e => e.DropPercentage)
                     .HasColumnType("decimal(18, 0)")
-                    .HasColumnName("drop_percentage");
+                    .HasColumnName("drop_percentage")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.LootTableId).HasColumnName("loot_table_id");
 
@@ -146,17 +130,18 @@ namespace DataAccess
 
                 entity.Property(e => e.WeaponId).HasColumnName("weapon_id");
 
-                entity.HasOne(d => d.LootTable)
-                    .WithMany(p => p.Lootlines)
-                    .HasForeignKey(d => d.LootTableId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Lootline__loot_t__03F0984C");
-
                 entity.HasOne(d => d.Weapon)
-                    .WithMany(p => p.Lootlines)
+                    .WithMany(p => p.LootLines)
                     .HasForeignKey(d => d.WeaponId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Lootline__weapon__04E4BC85");
+                    .HasConstraintName("FK__LootLine__weapon__1CBC4616");
+            });
+
+            modelBuilder.Entity<LootTable>(entity =>
+            {
+                entity.ToTable("LootTable");
+
+                entity.Property(e => e.Id).HasColumnName("id");
             });
 
             modelBuilder.Entity<Mob>(entity =>

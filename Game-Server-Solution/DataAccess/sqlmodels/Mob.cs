@@ -10,7 +10,6 @@ namespace DataAccess
         public Mob()
         {
             KillStats = new HashSet<KillStat>();
-            LootTables = new HashSet<LootTable>();
             MobSpawns = new HashSet<MobSpawn>();
         }
 
@@ -24,7 +23,6 @@ namespace DataAccess
 
         public virtual LootTable LootTable { get; set; }
         public virtual ICollection<KillStat> KillStats { get; set; }
-        public virtual ICollection<LootTable> LootTables { get; set; }
         public virtual ICollection<MobSpawn> MobSpawns { get; set; }
     }
 }

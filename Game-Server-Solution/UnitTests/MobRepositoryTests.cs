@@ -17,28 +17,50 @@ namespace UnitTests
         public void Test1()
         {
             // arrange
-            List<MobSpawnDTO> mobspawns = new List<MobSpawnDTO>();
-            mobspawns.Add(new MobSpawnDTO { SpawnX = 10, SpawnY = 14, Mob = new Mob() { Defense = 1, Exp = 1, Attack = 10, Health = 0, Id = 1, LootTableId = 1, Speed = 10 } });
-            mobspawns.Add(new MobSpawnDTO { SpawnX = 12, SpawnY = 30, Mob = new Mob() { Defense = 12, Exp = 11, Attack = 120, Health = 10, Id = 2, LootTableId = 1, Speed = 10 } });
 
-            using var contextFactory = new
+            LootTable lootTable = new LootTable() {d}
 
-            var mockRepo = new Mock<IMobRepository>();
+            Weapon weapon = new Weapon() { Damage = 1, Description = "strong", AttackSpeed = 1, Id = 1, LevelRequirement = 2, Name = "sword", Rarity = "rare" };
 
-            MobController mobController = new MobController(mobmock.Object);
-            // MobController 
+            Lootline lootline = new Lootline() { DropPercentage = .25M, Id = 1, LootTableId = 1, Quantity = 1, WeaponId = 1 };
+
+            Mob newmob = new Mob() { Defense = 1, Attack = 1, Exp = 1, Health = 1, Speed = 2,LootTableId=1};
+
+            MobSpawn mobspawn = new MobSpawn() {ModId=1, SpawnX = 1, SpawnY = 2 };
+
+            using Project2ContextFactory factory = new Project2ContextFactory();
+
+            using (Project2Context setcontext = factory.CreateContext())
+            {
+           
+                setcontext.Mobs.Add(newmob);
 
 
+                setcontext.Weapons.Add(weapon);
 
-            mockRepo.Setup(r => r.GetMobspawns()).Returns(mobspawns);
-            mockRepo.Setup(r => r.GetMobspawns()).Returns(mobspawns);
+                
+
+               // setcontext.Lootlines.Add(lootline);
+
+               // setcontext.MobSpawns.Add(mobspawn);
+
+               setcontext.SaveChanges();
+
+              //  setcontext.MobSpawns.Add(mobspawn);
+
+
+            }
+
+            using var context = factory.CreateContext();
+            var repo = new MobRepository(context);
+
             // act
+          
+            var mobs = repo.GetMobspawns();
 
             // assert
-            mockRepo.Verify(r => r.GetMobspawns());
-
-
-
+            Assert.True(mobs.Count == 0);
+  
 
 
         }
