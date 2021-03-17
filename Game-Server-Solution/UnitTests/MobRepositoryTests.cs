@@ -16,7 +16,7 @@ namespace UnitTests
         [Fact]
         public void Test1()
         {
-            // arrange
+            //arrange
 
             //LootTable lootTable = new LootTable() {d}
 
