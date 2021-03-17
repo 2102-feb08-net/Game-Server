@@ -10,6 +10,6 @@ namespace DataAccess
     {
         public double SpawnX { get; set; }
         public double SpawnY { get; set; }
-        //public Mob Mob { get; set; }
+        public Mob Mob { get; set; }
     }
 }

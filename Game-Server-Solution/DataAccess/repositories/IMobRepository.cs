@@ -8,6 +8,6 @@ namespace DataAccess
 {
     public interface IMobRepository
     {
-        //public List<MobSpawnDTO> GetMobspawns();
+        public List<MobSpawnDTO> GetMobspawns();
     }
 }
