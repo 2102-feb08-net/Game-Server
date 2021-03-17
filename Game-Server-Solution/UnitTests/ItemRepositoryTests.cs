@@ -28,11 +28,13 @@ namespace UnitTests
             };
             context.Weapons.Add(insertedWeapon);
             context.SaveChanges();
-            var repo = new ItemRepository(context);
+            //var repo = new ItemRepository(context);
 
-            // act
-            Weapon weapon = repo.GetWeapon(insertedWeapon.Id);
-
+            //// act
+            //Weapon weapon = repo.GetWeapon(insertedWeapon.Id);
+            Weapon weapon = context.Weapons
+                .Select(w => w)
+                .Where(w => w.Id == insertedWeapon.Id).First();
             // assert
             Assert.Equal(insertedWeapon.Id, weapon.Id);
             Assert.Equal(insertedWeapon.Name, weapon.Name);
