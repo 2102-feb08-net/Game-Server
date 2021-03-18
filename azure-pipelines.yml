@@ -24,7 +24,7 @@ stages:
 
   variables:
     buildConfiguration: Release
-    appDirectory: Game-Server-Solution
+    appDirectory: Game-Server
 
   jobs:
   - job: build
