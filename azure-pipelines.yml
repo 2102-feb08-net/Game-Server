@@ -4,7 +4,7 @@ trigger:
     - main
   paths:
     include:
-    - Game-Server-Solution
+    - Game-Server
 
 schedules:
 - cron: '*/30 * * * *'
