@@ -29,7 +29,7 @@ namespace Business.Model
         /// <summary>
         /// Number of times this mob was killed.
         /// </summary>
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
         /// <summary>
         /// Updates the quantity by incrementing it by 1.

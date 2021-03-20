@@ -143,6 +143,7 @@ namespace UnitTests.IntegrationTests
             };
             context.Characters.Add(insertedCharacter);
             context.SaveChanges();
+            characterBeforeUpdate.Id = insertedCharacter.Id;
             var characterUpdated = new Business.Model.Character
             {
                 Id = insertedCharacter.Id,
@@ -225,6 +226,34 @@ namespace UnitTests.IntegrationTests
 
             //assert
             KillStat killStat = context.KillStats.Local.Single(k => k.PlayerId == insertedPlayer.Id && k.MobId == insertedMob.Id);
+            Assert.Equal(insertedPlayer.Id, killStat.PlayerId);
+            Assert.Equal(insertedMob.Id, killStat.MobId);
+            Assert.Equal(1, killStat.Quantity);
+        }
+
+        [Fact]
+        public void Save_SavesCreateKillStat()
+        {
+            //arrange
+            using var contextFactory = new Project2ContextFactory();
+            using Project2Context arrangeActContext = contextFactory.CreateContext();
+            Player insertedPlayer = CreatePlayer(null);
+            LootTable insertedLootTable = CreateLootTable();
+            arrangeActContext.Players.Add(insertedPlayer);
+            arrangeActContext.LootTables.Add(insertedLootTable);
+            arrangeActContext.SaveChanges();
+            Mob insertedMob = CreateMob(insertedLootTable.Id);
+            arrangeActContext.Mobs.Add(insertedMob);
+            arrangeActContext.SaveChanges();
+            var repo = new PlayerRepository(arrangeActContext);
+            repo.UpdateKillStat(insertedPlayer.Id, insertedMob.Id);
+
+            //act
+            repo.Save();
+
+            //assert
+            using var assertContext = contextFactory.CreateContext();
+            KillStat killStat = assertContext.KillStats.Single(k => k.PlayerId == insertedPlayer.Id && k.MobId == insertedMob.Id);
             Assert.InRange(killStat.Id, 1, 10000);
             Assert.Equal(insertedPlayer.Id, killStat.PlayerId);
             Assert.Equal(insertedMob.Id, killStat.MobId);
