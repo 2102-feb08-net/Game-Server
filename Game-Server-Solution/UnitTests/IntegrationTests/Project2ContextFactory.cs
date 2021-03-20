@@ -4,11 +4,11 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccess;
+using DataAccess.Entities;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-namespace UnitTests
+namespace Tests.IntegrationTests
 {
     public class Project2ContextFactory : IDisposable
     {

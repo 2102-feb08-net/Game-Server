@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace UnitTests.UnitTests
+namespace Tests.UnitTests
 {
     public class PlayerTest
     {

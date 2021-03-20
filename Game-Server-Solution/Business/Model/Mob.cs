@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess
+namespace Business.Model
 {
-    public interface IMobRepository
+    public class Mob
     {
-        public List<MobSpawnDTO> GetMobspawns();
     }
 }

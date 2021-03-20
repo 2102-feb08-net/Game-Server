@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Business.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.repositories
+namespace Business.Interface
 {
     public interface IItemRepository
     {
@@ -18,7 +19,5 @@ namespace DataAccess.repositories
 
         Consumable GetRandomConsumable();
 
-
- 
     }
 }

@@ -1,40 +1,35 @@
-﻿using System;
+﻿using Business.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.repositories
+namespace DataAccess.Repositories
 {
     public class ItemRepository : IItemRepository
     {
-        private readonly Project2Context _context;
-
-        public ItemRepository(Project2Context context)
-        {
-            _context = context;
-        }
-        public IEnumerable<Weapon> GetAllWeapons()
+        public IEnumerable<Business.Model.Consumable> GetAllConsumables()
         {
             throw new NotImplementedException();
         }
 
-        public Weapon GetWeapon(int id)
+        public IEnumerable<Business.Model.Weapon> GetAllWeapons()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Consumable> GetAllConsumables()
+        public Business.Model.Consumable GetConsumable(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Consumable GetConsumable(int id)
+        public Business.Model.Consumable GetRandomConsumable()
         {
             throw new NotImplementedException();
         }
 
-        public Consumable GetRandomConsumable()
+        public Business.Model.Weapon GetWeapon(int id)
         {
             throw new NotImplementedException();
         }

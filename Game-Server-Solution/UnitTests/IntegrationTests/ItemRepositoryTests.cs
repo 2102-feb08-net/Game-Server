@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccess;
-using DataAccess.repositories;
+using DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
-namespace UnitTests
+namespace Tests.IntegrationTests
 {
     public class ItemRepositoryTests
     {

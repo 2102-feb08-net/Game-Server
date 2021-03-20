@@ -1,5 +1,5 @@
-﻿using DataAccess;
-using DataAccess.repositories;
+﻿using DataAccess.Entities;
+using DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace UnitTests.IntegrationTests
+namespace Tests.IntegrationTests
 {
     public class PlayerRepositoryTest
     {
@@ -120,7 +120,7 @@ namespace UnitTests.IntegrationTests
             Assert.Equal(insertedKillStat.PlayerId, killStats[0].PlayerId);
             Assert.Equal(insertedKillStat.MobId, killStats[0].MobId);
             Assert.Equal(insertedKillStat.Quantity, killStats[0].Quantity);
-            
+
         }
 
         [Fact]
@@ -201,7 +201,7 @@ namespace UnitTests.IntegrationTests
             KillStat killStat = context.KillStats.Local.Single(k => k.Id == insertedKillStat.Id);
             Assert.Equal(insertedKillStat.Id, killStat.Id);
             Assert.Equal(insertedKillStat.PlayerId, killStat.PlayerId);
-            Assert.Equal(insertedKillStat.MobId, killStat. MobId);
+            Assert.Equal(insertedKillStat.MobId, killStat.MobId);
             Assert.Equal(11, killStat.Quantity);
         }
 

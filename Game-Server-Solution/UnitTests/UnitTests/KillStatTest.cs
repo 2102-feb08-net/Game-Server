@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace UnitTests.UnitTests
+namespace Tests.UnitTests
 {
     public class KillStatTest
     {
@@ -15,6 +15,7 @@ namespace UnitTests.UnitTests
         private void SetUp()
         {
             killStat = new();
+            killStat.Quantity = 0;
         }
 
         [Fact]

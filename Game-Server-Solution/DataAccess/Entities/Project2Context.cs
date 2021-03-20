@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace DataAccess
+namespace DataAccess.Entities
 {
     public partial class Project2Context : DbContext
     {

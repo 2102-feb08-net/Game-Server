@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.repositories
+namespace Business.Model
 {
-    public interface IConsumableService
+    public class Weapon
     {
-        public void GetRandomConsumable();
     }
 }

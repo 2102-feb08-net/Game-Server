@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Business.Interface;
+using DataAccess.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess
+namespace DataAccess.Repositories
 {
 
     public class MobRepository : IMobRepository
@@ -16,15 +18,15 @@ namespace DataAccess
             _context = context;
         }
 
-        public List<MobSpawnDTO> GetMobspawns()
+        public List<Business.Model.MobSpawn> GetMobspawns()
         {
             var results = _context.MobSpawns.Include(x => x.Mod); ;
 
-            List<MobSpawnDTO> mobspawns = new List<MobSpawnDTO>();
+            List<Business.Model.MobSpawn> mobspawns = new List<Business.Model.MobSpawn>();
 
             foreach (var result in results)
             {
-                mobspawns.Add(new MobSpawnDTO() { Mob = result.Mod,SpawnX=result.SpawnX,SpawnY = result.SpawnY});
+                mobspawns.Add(new Business.Model.MobSpawn() { MobId = result.ModId, SpawnX = result.SpawnX, SpawnY = result.SpawnY });
             }
 
             return mobspawns;

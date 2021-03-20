@@ -1,4 +1,6 @@
-using DataAccess;
+using Business.Interface;
+using DataAccess.Entities;
+using DataAccess.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;

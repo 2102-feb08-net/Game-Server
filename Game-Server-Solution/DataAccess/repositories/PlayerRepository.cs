@@ -1,4 +1,5 @@
 ﻿using Business.Interface;
+using DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.repositories
+namespace DataAccess.Repositories
 {
     public class PlayerRepository : IPlayerRepository
     {
@@ -38,7 +39,7 @@ namespace DataAccess.repositories
             };
         }
 
-    public IEnumerable<Business.Model.KillStat> GetKillStats(int playerId)
+        public IEnumerable<Business.Model.KillStat> GetKillStats(int playerId)
         {
             var killStats = _context.KillStats
                 .Include(k => k.Player)
@@ -77,10 +78,10 @@ namespace DataAccess.repositories
         {
             List<KillStat> currentEntityList = _context.KillStats
                 .Select(ks => ks)
-                .Where(ks => (ks.PlayerId == playerId) && (ks.MobId == mobId))
+                .Where(ks => ks.PlayerId == playerId && ks.MobId == mobId)
                 .ToList();
 
-            if(currentEntityList.Count == 0)
+            if (currentEntityList.Count == 0)
             {
                 var newEntity = new KillStat
                 {

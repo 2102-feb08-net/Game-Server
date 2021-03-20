@@ -1,18 +1,16 @@
 ﻿using Xunit;
-using DataAccess;
-using DataAccess.repositories;
 using Moq;
 using System;
 
-namespace UnitTests
+namespace Tests.IntegrationTests
 {
     public class ConsumableServiceTests
     {
-        [Fact]
-        public void Constructor_Accepts_Null()
-        {
-            var consumableService = new ConsumableService(null);
-        }
+        //[Fact]
+        //public void Constructor_Accepts_Null()
+        //{
+        //    var consumableService = new ConsumableService(null);
+        //}
 
         //[Fact]
         //public void GetRandomConsumable_GetsOneRandomConsumable()
