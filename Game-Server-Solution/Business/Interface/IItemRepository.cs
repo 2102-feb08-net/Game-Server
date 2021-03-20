@@ -16,7 +16,5 @@ namespace Business.Interface
         IEnumerable<Consumable> GetAllConsumables();
 
         Consumable GetConsumable(int id);
-
-        void Save();
     }
 }

@@ -84,6 +84,7 @@ namespace Tests.IntegrationTests
             Assert.Equal(insertedWeapon1.AttackSpeed, weapon[0].AttackSpeed);
             Assert.Equal(insertedWeapon1.LevelRequirement, weapon[0].LevelRequirement);
             Assert.Equal(insertedWeapon1.Rarity, weapon[0].Rarity);
+            Assert.Equal(insertedWeapon2.Id, weapon[1].Id);
             Assert.Equal(insertedWeapon2.Name, weapon[1].Name);
         }
 
@@ -134,6 +135,7 @@ namespace Tests.IntegrationTests
             Assert.Equal(insertedConsumable1.Strength, consumable[0].Strength);
             Assert.Equal(insertedConsumable1.Type, consumable[0].Type);
             Assert.Equal(insertedConsumable2.Id, consumable[1].Id);
+            Assert.Equal(insertedConsumable2.ItemName, consumable[1].ItemName);
         }
     }
 }
