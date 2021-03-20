@@ -1,4 +1,5 @@
 ﻿using Business.Interface;
+using DataAccess.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,13 @@ namespace DataAccess.Repositories
 {
     public class ItemRepository : IItemRepository
     {
+        private readonly Project2Context _context;
+
+        public ItemRepository(Project2Context context)
+        {
+            _context = context;
+        }
+
         public IEnumerable<Business.Model.Consumable> GetAllConsumables()
         {
             throw new NotImplementedException();
@@ -24,14 +32,14 @@ namespace DataAccess.Repositories
             throw new NotImplementedException();
         }
 
-        public Business.Model.Consumable GetRandomConsumable()
+        public Business.Model.Weapon GetWeapon(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Business.Model.Weapon GetWeapon(int id)
+        public void Save()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
     }
 }

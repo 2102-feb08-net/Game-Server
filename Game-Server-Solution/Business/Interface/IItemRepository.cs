@@ -17,7 +17,6 @@ namespace Business.Interface
 
         Consumable GetConsumable(int id);
 
-        Consumable GetRandomConsumable();
-
+        void Save();
     }
 }
