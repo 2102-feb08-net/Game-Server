@@ -19,12 +19,12 @@ namespace Business.Model
         /// <summary>
         /// Player id.
         /// </summary>
-        public int UserId { get; set; }
+        public int PlayerId { get; set; }
 
         /// <summary>
         /// Mob id.
         /// </summary>
-        public int ModId { get; set; }
+        public int MobId { get; set; }
 
         /// <summary>
         /// Number of times this mob was killed.

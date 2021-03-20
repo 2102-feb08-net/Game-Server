@@ -38,7 +38,7 @@ namespace Business.Model
                 }
                 else if (value.Length < 3 || value.Length > 10)
                 {
-                    throw new ArgumentException("Input size must be 3-10 for usernames");
+                    throw new ArgumentException("Input size must be 3-10 for character names");
                 }
                 else
                 {
