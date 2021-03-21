@@ -42,11 +42,5 @@ namespace GameAPI.Controllers
         {
             return _itemRepository.GetConsumable(id);
         }
-
-        //[HttpGet("/api/consumables/random")]
-        //public Consumable GetRandomConsumable()
-        //{
-        //    return _itemRepository.GetRandomConsumable();
-        //}
     }
 }

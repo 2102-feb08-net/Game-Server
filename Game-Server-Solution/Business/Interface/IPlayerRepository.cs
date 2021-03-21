@@ -7,12 +7,42 @@ using System.Threading.Tasks;
 
 namespace Business.Interface
 {
+    /// <summary>
+    /// Interface for player repository
+    /// </summary>
     public interface IPlayerRepository
     {
+        /// <summary>
+        /// Gets all the kill stats of the player
+        /// </summary>
+        /// <param name="playerId"></param>
+        /// <returns>IEnumerable of KillStat</returns>
         IEnumerable<KillStat> GetKillStats(int playerId);
+
+        /// <summary>
+        /// Updates the KillStat of the player that killed the mob specified by mobId.
+        /// If the KillStat doesn't exist, creates it on the database
+        /// </summary>
+        /// <param name="playerId"></param>
+        /// <param name="mobId"></param>
         void UpdateKillStat(int playerId, int mobId);
+
+        /// <summary>
+        /// Gets the character stats of the player specified by playerId
+        /// </summary>
+        /// <param name="playerId"></param>
+        /// <returns>A character</returns>
         Character GetCharacterStats(int playerId);
+
+        /// <summary>
+        /// Updates the character stats of the specified character on the database
+        /// </summary>
+        /// <param name="character"></param>
         void UpdateCharacterStats(Character character);
+
+        /// <summary>
+        /// Persists the changes onto the database
+        /// </summary>
         void Save();
     }
 }
