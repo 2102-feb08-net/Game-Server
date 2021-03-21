@@ -80,6 +80,7 @@ namespace Tests.IntegrationTests
             var insertedMob1 = CreateMob(insertedLootTable1.Id);
             var insertedMob2 = CreateMob(insertedLootTable2.Id);
             context.Mobs.Add(insertedMob1);
+            context.SaveChanges();
             context.Mobs.Add(insertedMob2);
             context.SaveChanges();
             var repo = new MobRepository(context);
@@ -115,6 +116,9 @@ namespace Tests.IntegrationTests
             context.Mobs.Add(insertedMob);
             var insertedLootLine1 = CreateLootLine(insertedLootTable.Id, insertedWeapon1.Id);
             var insertedLootLine2 = CreateLootLine(insertedLootTable.Id, insertedWeapon2.Id);
+            context.LootLines.Add(insertedLootLine1);
+            context.SaveChanges();
+            context.LootLines.Add(insertedLootLine2);
             context.SaveChanges();
             var repo = new MobRepository(context);
 
@@ -149,6 +153,10 @@ namespace Tests.IntegrationTests
             context.SaveChanges();
             var insertedMobSpawn1 = CreateMobSpawn(insertedMob1.Id);
             var insertedMobSpawn2 = CreateMobSpawn(insertedMob2.Id);
+            context.MobSpawns.Add(insertedMobSpawn1);
+            context.SaveChanges();
+            context.MobSpawns.Add(insertedMobSpawn2);
+            context.SaveChanges();
             var repo = new MobRepository(context);
 
             // act

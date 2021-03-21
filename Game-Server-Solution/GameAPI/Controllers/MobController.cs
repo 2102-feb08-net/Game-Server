@@ -16,62 +16,43 @@ namespace GameAPI.Controllers
     {
         private readonly IMobRepository _mobRepository;
 
-        ///////// <summary>
-        ///////// Get mob repository.
-        ///////// </summary>
+        /// <summary>
+        /// Initialize the mobRepository.
+        /// </summary>
         public MobController(IMobRepository mobRepository)
         {
            _mobRepository = mobRepository;
         }
 
         /// <summary>
-        /// Set and save mob stats to databse.
+        /// Gets a list of spawn locations for mobs
         /// </summary>
-        //[HttpPost("api/admin/monster-creation")]
-        //public void RegisterMobStats(int mobID, , int health, int experience, float attack, float defense, float speed)
-        //{
-        //    _mobRepository.SetMobStats(mobID, health, experience, attack, defense, defense, speed);
-        //    _mobRepository.Save();
-        //}
-
-        /// <summary>
-        /// Set and save mob loot to database.
-        /// </summary>
-        //[HttpPost("api/admin/monster-loot")]
-        //public void RegisterMobLoot(int mobID, int lootID, int lootLineID, int weaponID, int quantity, decimal dropPercentage)
-        //{
-        //    _mobRepository.SetMonsterLoot(mobID, lootID, lootLineID, weaponID, quantity, dropPercentage);
-        //    _mobRepository.Save();
-        //}
-
-        /// <summary>
-        /// Get list of mobs with their stats and spawn location.
-        /// </summary>
+        /// <returns>IEnumarable of MobSpawn</returns>
         [HttpGet("api/mobspawns")]
         public IActionResult GetMobSpawns()
         {
             return Ok(_mobRepository.GetMobSpawns());
         }
 
+        /// <summary>
+        /// Gets all the mobs that will spawn in the game world
+        /// </summary>
+        /// <returns>IEnumerable of Mobs</returns>
         [HttpGet("api/mobs")]
         public IActionResult GetAllMobs()
         {
             return Ok(_mobRepository.GetAllMobs());
         }
 
+        /// <summary>
+        /// Gets the loot table of a mob
+        /// </summary>
+        /// <param name="mobId"></param>
+        /// <returns>IEnumarable of LootLine</returns>
         [HttpGet("api/mobs/loottable/{mobId}")]
         public IActionResult GetLootTable(int mobId)
         {
             return Ok(_mobRepository.GetLootTable(mobId));
         }
-
-        /// <summary>
-        /// Get Loot of Mob given a MobID.
-        /// </summary>
-        //[HttpGet("api/maze/mobloot")]
-        //public Loot LoadMobLoot(int mobID) 
-        //{
-        //    return _mobRepository.GetMobLoot(mobID);
-        //}
     }
 }

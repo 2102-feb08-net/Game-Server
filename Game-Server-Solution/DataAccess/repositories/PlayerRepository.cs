@@ -21,7 +21,6 @@ namespace DataAccess.Repositories
         public Business.Model.Character GetCharacterStats(int playerId)
         {
             var player = _context.Players
-                .Include(p => p.Character)
                 .First(p => p.Id == playerId);
 
             var character = _context.Characters

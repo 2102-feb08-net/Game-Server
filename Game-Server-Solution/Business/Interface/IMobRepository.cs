@@ -7,10 +7,28 @@ using System.Threading.Tasks;
 
 namespace Business.Interface
 {
+    /// <summary>
+    /// Interface for mob repository
+    /// </summary>
     public interface IMobRepository
     {
+        /// <summary>
+        /// Gets all the mobs that are a part of the game
+        /// </summary>
+        /// <returns>IEnumerable of mobs</returns>
         IEnumerable<Mob> GetAllMobs();
+
+        /// <summary>
+        /// Gets the loot table for the mob with the specified id
+        /// </summary>
+        /// <param name="mobId"></param>
+        /// <returns>IEnumerable of LootLine</returns>
         IEnumerable<LootLine> GetLootTable(int mobId);
+
+        /// <summary>
+        /// Gets all the positions that the mobs can spawn on the game world
+        /// </summary>
+        /// <returns>IEnumerable of MobSpawn</returns>
         public IEnumerable<MobSpawn> GetMobSpawns();
     }
 }
