@@ -1,19 +1,4 @@
 trigger:
-  branches:
-    include:
-    - main
-  paths:
-    include:
-    - Game-Server
-
-schedules:
-- cron: '*/30 * * * *'
-  displayName: 30 minute scheduled build
-  branches:
-    include:
-    - main
-
-pr:
 - main
 
 pool:
