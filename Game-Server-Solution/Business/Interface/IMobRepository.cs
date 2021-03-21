@@ -9,6 +9,8 @@ namespace Business.Interface
 {
     public interface IMobRepository
     {
-        public List<MobSpawn> GetMobspawns();
+        IEnumerable<Mob> GetAllMobs();
+        IEnumerable<LootLine> GetLootTable(int mobId);
+        public IEnumerable<MobSpawn> GetMobSpawns();
     }
 }

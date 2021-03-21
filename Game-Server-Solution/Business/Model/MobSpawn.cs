@@ -8,7 +8,8 @@ namespace Business.Model
 {
     public class MobSpawn
     {
-        public int MobId { get; set; }
+        public int Id { get; set; }
+        public int ModId { get; set; }
         public double SpawnX { get; set; }
         public double SpawnY { get; set; }
     }

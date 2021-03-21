@@ -48,10 +48,23 @@ namespace GameAPI.Controllers
         /// Get list of mobs with their stats and spawn location.
         /// </summary>
         [HttpGet("api/mobspawns")]
-        public IActionResult LoadMobs()
+        public IActionResult GetMobSpawns()
         {
-            return Ok(_mobRepository.GetMobspawns());
+            return Ok(_mobRepository.GetMobSpawns());
         }
+
+        [HttpGet("api/mobs")]
+        public IActionResult GetAllMobs()
+        {
+            return Ok(_mobRepository.GetAllMobs());
+        }
+
+        [HttpGet("api/mobs/loottable/{mobId}")]
+        public IActionResult GetLootTable(int mobId)
+        {
+            return Ok(_mobRepository.GetLootTable(mobId));
+        }
+
         /// <summary>
         /// Get Loot of Mob given a MobID.
         /// </summary>

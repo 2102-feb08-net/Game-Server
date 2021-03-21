@@ -18,18 +18,29 @@ namespace DataAccess.Repositories
             _context = context;
         }
 
-        public List<Business.Model.MobSpawn> GetMobspawns()
+        public IEnumerable<Business.Model.Mob> GetAllMobs()
         {
-            var results = _context.MobSpawns.Include(x => x.Mod); ;
+            throw new NotImplementedException();
+        }
 
-            List<Business.Model.MobSpawn> mobspawns = new List<Business.Model.MobSpawn>();
+        public IEnumerable<Business.Model.LootLine> GetLootTable(int mobId)
+        {
+            throw new NotImplementedException();
+        }
 
-            foreach (var result in results)
-            {
-                mobspawns.Add(new Business.Model.MobSpawn() { MobId = result.ModId, SpawnX = result.SpawnX, SpawnY = result.SpawnY });
-            }
+        public IEnumerable<Business.Model.MobSpawn> GetMobSpawns()
+        {
+            throw new NotImplementedException();
+            //var results = _context.MobSpawns.Include(x => x.Mod); ;
 
-            return mobspawns;
+            //List<Business.Model.MobSpawn> mobspawns = new List<Business.Model.MobSpawn>();
+
+            //foreach (var result in results)
+            //{
+            //    mobspawns.Add(new Business.Model.MobSpawn() { MobId = result.ModId, SpawnX = result.SpawnX, SpawnY = result.SpawnY });
+            //}
+
+            //return mobspawns;
         }
     }
 }
