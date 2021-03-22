@@ -80,15 +80,9 @@ namespace Tests.IntegrationTests
             context.Players.Add(insertedPlayer);
             context.SaveChanges();
             var repo = new PlayerRepository(context);
-            Business.Model.Player insertedPlayerB = new Business.Model.Player
-            {
-                CharacterId = insertedPlayer.CharacterId,
-                Username = insertedPlayer.Username,
-                Password = insertedPlayer.Password
-            };
 
             //act
-            Business.Model.Player player = repo.GetPlayer(insertedPlayerB);
+            Business.Model.Player player = repo.GetPlayer(insertedPlayer.Username, insertedPlayer.Password);
 
             //assert
             Assert.Equal(insertedPlayer.Id, player.Id);

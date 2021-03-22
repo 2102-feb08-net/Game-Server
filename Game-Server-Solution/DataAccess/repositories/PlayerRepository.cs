@@ -46,11 +46,11 @@ namespace DataAccess.Repositories
             };
         }
 
-        public Business.Model.Player GetPlayer(Business.Model.Player player)
+        public Business.Model.Player GetPlayer(string username, string password)
         {
             var playerDB = _context.Players
                 .Select(p => p)
-                .Where(p => p.Username == player.Username && p.Password == player.Password);
+                .Where(p => p.Username == username && p.Password == password);
 
             var playerList = playerDB.ToList();
 

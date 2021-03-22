@@ -23,9 +23,10 @@ namespace Business.Interface
         /// <summary>
         /// Gets the player from the database with the given username and password.
         /// </summary>
-        /// <param name="player"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
         /// <returns>A Player</returns>
-        Player GetPlayer(Player player);
+        Player GetPlayer(string username, string password);
 
         /// <summary>
         /// Gets all the kill stats of the player

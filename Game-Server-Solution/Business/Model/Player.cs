@@ -33,13 +33,9 @@ namespace Business.Model
             get => _username;
             set 
             {
-                if (!value.All(Char.IsLetterOrDigit))
+                if (value.Length < 5 || value.Length > 25)
                 {
-                    throw new ArgumentException("Can only input English letters and numbers for usernames");
-                }
-                else if (value.Length < 5 || value.Length > 15)
-                {
-                    throw new ArgumentException("Input size must be 5-15 for usernames");
+                    throw new ArgumentException("Input size must be 5-25 for usernames");
                 }
                 else
                 {

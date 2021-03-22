@@ -18,7 +18,7 @@ namespace Tests.UnitTests
         }
 
         [Theory]
-        [InlineData("Hamza")]
+        [InlineData("Hamza@gmail.com")]
         [InlineData("2453556")]
         [InlineData("Hamza213")]
         public void Username_ValidName_DoesNotThrowException(string username)
@@ -30,9 +30,7 @@ namespace Tests.UnitTests
 
         [Theory]
         [InlineData("Butt")]
-        [InlineData("1234567890123456")]
-        [InlineData("Hamza Butt")]
-        [InlineData("Hamza!@#")]
+        [InlineData("12345678901234567890123456")]
         public void Username_InvalidName_ThrowsException(string username)
         {
             SetUp();

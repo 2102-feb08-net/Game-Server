@@ -27,14 +27,15 @@ namespace GameAPI.Controllers
         }
 
         /// <summary>
-        /// Gets a Player that matches the username and password in the player parameter
+        /// Gets a Player that matches the username and password
         /// </summary>
-        /// <param name="player"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
         /// <returns>A Player</returns>
-        [HttpGet("api/player/{player}/login")]
-        public IActionResult GetPlayer(Player player)
+        [HttpGet("api/player/{username}/{password}/login")]
+        public IActionResult GetPlayer(string username, string password)
         {
-            return Ok(_playerRepository.GetPlayer(player));
+            return Ok(_playerRepository.GetPlayer(username, password));
         }
 
         /// <summary>
