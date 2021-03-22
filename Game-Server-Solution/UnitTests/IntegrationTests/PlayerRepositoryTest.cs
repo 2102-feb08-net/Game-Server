@@ -68,6 +68,70 @@ namespace Tests.IntegrationTests
         }
 
         [Fact]
+        public void GetPlayer_GetsExistingPlayer()
+        {
+            //arrange
+            using var contextFactory = new Project2ContextFactory();
+            using Project2Context context = contextFactory.CreateContext();
+            Character insertedCharacter = CreateCharacter();
+            context.Characters.Add(insertedCharacter);
+            context.SaveChanges();
+            Player insertedPlayer = CreatePlayer(insertedCharacter.Id);
+            context.Players.Add(insertedPlayer);
+            context.SaveChanges();
+            var repo = new PlayerRepository(context);
+            Business.Model.Player insertedPlayerB = new Business.Model.Player
+            {
+                CharacterId = insertedPlayer.CharacterId,
+                Username = insertedPlayer.Username,
+                Password = insertedPlayer.Password
+            };
+
+            //act
+            Business.Model.Player player = repo.GetPlayer(insertedPlayerB);
+
+            //assert
+            Assert.Equal(insertedPlayer.Id, player.Id);
+            Assert.Equal(insertedPlayer.CharacterId, player.CharacterId);
+            Assert.Equal(insertedPlayer.Username, player.Username);
+            Assert.Equal(insertedPlayer.Password, player.Password);
+        }
+
+        [Fact]
+        public void CreatePlayer_Creates1PlayerAndCharacter()
+        {
+            //arrange
+            using var contextFactory = new Project2ContextFactory();
+            using Project2Context context = contextFactory.CreateContext();
+            Player insertedPlayer = CreatePlayer(1);
+            Business.Model.Player insertedPlayerB = new Business.Model.Player
+            {
+                CharacterId = insertedPlayer.CharacterId,
+                Username = insertedPlayer.Username,
+                Password = insertedPlayer.Password
+            };
+            var repo = new PlayerRepository(context);
+
+            //act
+            Business.Model.Player placeholder = repo.CreatePlayer(insertedPlayerB, "Hamza");
+
+            //assert
+            Player player = context.Players.Local.Single(p => p.Username == insertedPlayerB.Username);
+            Character character = context.Characters.Local.Single(c => c.CharacterName == "Hamza");
+            Assert.Equal(1, player.Id);
+            Assert.Equal(insertedPlayerB.CharacterId, player.CharacterId);
+            Assert.Equal(insertedPlayerB.Username, player.Username);
+            Assert.Equal(insertedPlayerB.Password, player.Password);
+            Assert.Equal(1, character.Id);
+            Assert.Equal("Hamza", character.CharacterName);
+            Assert.Equal(1, character.Exp);
+            Assert.Equal(10, character.Health);
+            Assert.Equal(1, character.Attack);
+            Assert.Equal(1, character.Defense);
+            Assert.Equal(10, character.Mana);
+        }
+
+        [Fact]
         public void GetCharacterStats_GetsExistingCharacterStats()
         {
             //arrange

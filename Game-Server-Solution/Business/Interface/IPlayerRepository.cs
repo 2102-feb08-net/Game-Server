@@ -13,6 +13,21 @@ namespace Business.Interface
     public interface IPlayerRepository
     {
         /// <summary>
+        /// Creates the player with the given username and password in the database.
+        /// Creates a Character for that player with the given chararcter name.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns>The Player that was created</returns>
+        Player CreatePlayer(Player player, string characterName);
+
+        /// <summary>
+        /// Gets the player from the database with the given username and password.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns>A Player</returns>
+        Player GetPlayer(Player player);
+
+        /// <summary>
         /// Gets all the kill stats of the player
         /// </summary>
         /// <param name="playerId"></param>

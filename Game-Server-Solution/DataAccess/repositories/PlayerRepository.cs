@@ -18,6 +18,16 @@ namespace DataAccess.Repositories
             _context = context;
         }
 
+        public Business.Model.Player CreatePlayer(Business.Model.Player player, string characterName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Business.Model.Player GetPlayer(Business.Model.Player player)
+        {
+            throw new NotImplementedException();
+        }
+
         public Business.Model.Character GetCharacterStats(int playerId)
         {
             var player = _context.Players

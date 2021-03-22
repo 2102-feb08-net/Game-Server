@@ -27,6 +27,29 @@ namespace GameAPI.Controllers
         }
 
         /// <summary>
+        /// Gets a Player that matches the username and password in the player parameter
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns>A Player</returns>
+        [HttpGet("api/player/{player}/login")]
+        public IActionResult GetPlayer(Player player)
+        {
+            return Ok(_playerRepository.GetPlayer(player));
+        }
+
+        /// <summary>
+        /// Creates a player with the given username and password and creates a character with the given character name.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="characterName"></param>
+        /// <returns>201Created response</returns>
+        [HttpPost("api/player/{player}/{characterName}/register")]
+        public IActionResult CreatePlayer(Player player, string characterName)
+        {
+            return CreatedAtAction(nameof(CreatePlayer), _playerRepository.CreatePlayer(player, characterName));
+        }
+
+        /// <summary>
         /// Gets a list of all the monsters the player has killed and their quantaties.
         /// </summary>
         /// <param name="playerId"></param>
