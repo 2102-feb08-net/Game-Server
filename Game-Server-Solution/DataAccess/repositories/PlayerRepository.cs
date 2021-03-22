@@ -20,12 +20,52 @@ namespace DataAccess.Repositories
 
         public Business.Model.Player CreatePlayer(Business.Model.Player player, string characterName)
         {
-            throw new NotImplementedException();
+            var newCharacter = new Character
+            {
+                CharacterName = characterName
+            };
+            _context.Characters.Add(newCharacter);
+            _context.SaveChanges();
+
+            
+            var newPlayer = new Player
+            {
+                CharacterId = newCharacter.Id,
+                Username = player.Username,
+                Password = player.Password
+            };
+            _context.Players.Add(newPlayer);
+            _context.SaveChanges();
+
+            return new Business.Model.Player
+            {
+                Id = newPlayer.Id,
+                CharacterId = newPlayer.CharacterId,
+                Username = newPlayer.Username,
+                Password = newPlayer.Password
+            };
         }
 
         public Business.Model.Player GetPlayer(Business.Model.Player player)
         {
-            throw new NotImplementedException();
+            var playerDB = _context.Players
+                .Select(p => p)
+                .Where(p => p.Username == player.Username && p.Password == player.Password);
+
+            var playerList = playerDB.ToList();
+
+            if (playerList.Count == 0)
+            {
+                throw new ArgumentException("No player with that username and password");
+            }
+
+            return new Business.Model.Player
+            {
+                Id = playerList[0].Id,
+                CharacterId = playerList[0].CharacterId,
+                Username = playerList[0].Username,
+                Password = playerList[0].Password
+            };
         }
 
         public Business.Model.Character GetCharacterStats(int playerId)
