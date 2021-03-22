@@ -41,6 +41,14 @@ namespace GameAPI
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<IItemRepository, ItemRepository>();
 
+            services.AddCors(options =>
+                options.AddDefaultPolicy(config => config
+                    .WithOrigins(
+                        "http://localhost:4200")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()));
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
