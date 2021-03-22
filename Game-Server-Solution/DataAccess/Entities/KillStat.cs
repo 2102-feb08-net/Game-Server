@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace DataAccess.Entities
+namespace DataAccess
 {
     public partial class KillStat
     {

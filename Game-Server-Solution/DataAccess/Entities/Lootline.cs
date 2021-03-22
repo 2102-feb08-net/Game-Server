@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace DataAccess.Entities
+namespace DataAccess
 {
-    public partial class LootLine
+    public partial class Lootline
     {
         public int Id { get; set; }
         public int? LootTableId { get; set; }
@@ -13,6 +13,6 @@ namespace DataAccess.Entities
         public int? Quantity { get; set; }
         public decimal? DropPercentage { get; set; }
 
-        public virtual Weapon Weapon { get; set; }
+        public virtual LootTable LootTable { get; set; }
     }
 }

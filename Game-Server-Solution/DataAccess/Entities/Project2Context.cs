@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace DataAccess.Entities
+namespace DataAccess
 {
     public partial class Project2Context : DbContext
     {
@@ -20,8 +20,8 @@ namespace DataAccess.Entities
         public virtual DbSet<Character> Characters { get; set; }
         public virtual DbSet<Consumable> Consumables { get; set; }
         public virtual DbSet<KillStat> KillStats { get; set; }
-        public virtual DbSet<LootLine> LootLines { get; set; }
         public virtual DbSet<LootTable> LootTables { get; set; }
+        public virtual DbSet<Lootline> Lootlines { get; set; }
         public virtual DbSet<Mob> Mobs { get; set; }
         public virtual DbSet<MobSpawn> MobSpawns { get; set; }
         public virtual DbSet<Player> Players { get; set; }
@@ -104,7 +104,7 @@ namespace DataAccess.Entities
                     .WithMany(p => p.KillStats)
                     .HasForeignKey(d => d.MobId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__KillStats__mob_i__2180FB33");
+                    .HasConstraintName("FK__KillStats__mob_i__51300E55");
 
                 entity.HasOne(d => d.Player)
                     .WithMany(p => p.KillStats)
@@ -113,16 +113,28 @@ namespace DataAccess.Entities
                     .HasConstraintName("FK__KillStats__playe__208CD6FA");
             });
 
-            modelBuilder.Entity<LootLine>(entity =>
+            modelBuilder.Entity<LootTable>(entity =>
             {
-                entity.ToTable("LootLine");
+                entity.ToTable("LootTable");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .HasColumnName("name");
+            });
+
+            modelBuilder.Entity<Lootline>(entity =>
+            {
+                entity.ToTable("Lootline");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("id");
+
                 entity.Property(e => e.DropPercentage)
                     .HasColumnType("decimal(18, 0)")
-                    .HasColumnName("drop_percentage")
-                    .HasDefaultValueSql("((0))");
+                    .HasColumnName("drop_percentage");
 
                 entity.Property(e => e.LootTableId).HasColumnName("loot_table_id");
 
@@ -132,18 +144,10 @@ namespace DataAccess.Entities
 
                 entity.Property(e => e.WeaponId).HasColumnName("weapon_id");
 
-                entity.HasOne(d => d.Weapon)
-                    .WithMany(p => p.LootLines)
-                    .HasForeignKey(d => d.WeaponId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LootLine__weapon__1CBC4616");
-            });
-
-            modelBuilder.Entity<LootTable>(entity =>
-            {
-                entity.ToTable("LootTable");
-
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.HasOne(d => d.LootTable)
+                    .WithMany(p => p.Lootlines)
+                    .HasForeignKey(d => d.LootTableId)
+                    .HasConstraintName("FK__Lootline__loot_t__47A6A41B");
             });
 
             modelBuilder.Entity<Mob>(entity =>
@@ -152,17 +156,30 @@ namespace DataAccess.Entities
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Attack).HasColumnName("attack");
+                entity.Property(e => e.Attack)
+                    .HasColumnName("attack")
+                    .HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Defense)
                     .HasColumnName("defense")
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.Exp).HasColumnName("exp");
+                entity.Property(e => e.Exp)
+                    .HasColumnName("exp")
+                    .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.Health).HasColumnName("health");
+                entity.Property(e => e.Health)
+                    .HasColumnName("health")
+                    .HasDefaultValueSql("((10))");
 
                 entity.Property(e => e.LootTableId).HasColumnName("loot_table_id");
+
+                entity.Property(e => e.Mobid).HasColumnName("mobid");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .HasColumnName("name")
+                    .HasDefaultValueSql("('???')");
 
                 entity.Property(e => e.Speed)
                     .HasColumnName("speed")
@@ -171,8 +188,7 @@ namespace DataAccess.Entities
                 entity.HasOne(d => d.LootTable)
                     .WithMany(p => p.Mobs)
                     .HasForeignKey(d => d.LootTableId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Mob__loot_table___7C4F7684");
+                    .HasConstraintName("FK__Mob__loot_table___503BEA1C");
             });
 
             modelBuilder.Entity<MobSpawn>(entity =>
@@ -186,12 +202,6 @@ namespace DataAccess.Entities
                 entity.Property(e => e.SpawnX).HasColumnName("spawn_x");
 
                 entity.Property(e => e.SpawnY).HasColumnName("spawn_y");
-
-                entity.HasOne(d => d.Mod)
-                    .WithMany(p => p.MobSpawns)
-                    .HasForeignKey(d => d.ModId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__MobSpawn__mod_id__07C12930");
             });
 
             modelBuilder.Entity<Player>(entity =>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace DataAccess.Entities
+namespace DataAccess
 {
     public partial class MobSpawn
     {
@@ -11,7 +11,5 @@ namespace DataAccess.Entities
         public int ModId { get; set; }
         public double SpawnX { get; set; }
         public double SpawnY { get; set; }
-
-        public virtual Mob Mod { get; set; }
     }
 }
