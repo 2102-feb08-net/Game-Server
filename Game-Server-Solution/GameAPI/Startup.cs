@@ -44,7 +44,8 @@ namespace GameAPI
             services.AddCors(options =>
                 options.AddDefaultPolicy(config => config
                     .WithOrigins(
-                        "http://localhost:4200")
+                        "http://localhost:4200",
+                        "https://reventure-game-client.azurewebsites.net")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials()));
