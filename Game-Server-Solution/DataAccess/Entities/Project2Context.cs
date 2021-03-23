@@ -128,13 +128,9 @@ namespace DataAccess.Entities
             {
                 entity.ToTable("Lootline");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DropPercentage)
-                    .HasColumnType("decimal(18, 0)")
-                    .HasColumnName("drop_percentage");
+                entity.Property(e => e.DropPercentage).HasColumnName("drop_percentage");
 
                 entity.Property(e => e.LootTableId).HasColumnName("loot_table_id");
 
@@ -147,7 +143,13 @@ namespace DataAccess.Entities
                 entity.HasOne(d => d.LootTable)
                     .WithMany(p => p.Lootlines)
                     .HasForeignKey(d => d.LootTableId)
-                    .HasConstraintName("FK__Lootline__loot_t__47A6A41B");
+                    .HasConstraintName("FK__Lootline__loot_t__634EBE90");
+
+                entity.HasOne(d => d.Weapon)
+                    .WithMany(p => p.Lootlines)
+                    .HasForeignKey(d => d.WeaponId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Lootline__weapon__6442E2C9");
             });
 
             modelBuilder.Entity<Mob>(entity =>

@@ -53,7 +53,7 @@ namespace Tests.IntegrationTests
                 LootTableId = lootTableId,
                 WeaponId = weaponId,
                 Quantity = 1,
-                DropPercentage = .25M
+                DropPercentage = .25
             };
         }
 
@@ -153,8 +153,7 @@ namespace Tests.IntegrationTests
             context.Mobs.Add(insertedMob);
             var insertedLootLine1 = CreateLootLine(insertedLootTable.Id, insertedWeapon1.Id);
             var insertedLootLine2 = CreateLootLine(insertedLootTable.Id, insertedWeapon2.Id);
-            insertedLootLine1.Id = 1;
-            insertedLootLine2.Id = 2;
+            context.SaveChanges();
             context.Lootlines.Add(insertedLootLine1);
             context.Lootlines.Add(insertedLootLine2);
             context.SaveChanges();
