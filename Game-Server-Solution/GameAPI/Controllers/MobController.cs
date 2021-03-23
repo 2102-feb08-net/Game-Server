@@ -45,14 +45,14 @@ namespace GameAPI.Controllers
         }
 
         /// <summary>
-        /// Gets the loot table of a mob
+        /// Gets the loot for killing a mob.
         /// </summary>
         /// <param name="mobId"></param>
-        /// <returns>IEnumarable of LootLine</returns>
-        [HttpGet("api/mobs/loottable/{mobId}")]
-        public IActionResult GetLootTable(int mobId)
+        /// <returns>A Weapon</returns>
+        [HttpGet("api/mobs/loot/{mobId}")]
+        public IActionResult GetLoot(int mobId)
         {
-            return Ok(_mobRepository.GetLootTable(mobId));
+            return Ok(_mobRepository.GetLoot(mobId));
         }
     }
 }

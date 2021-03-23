@@ -156,6 +156,25 @@ namespace DataAccess.Repositories
 
         }
 
+        public IEnumerable<Business.Model.Character> GetLeaderboard()
+        {
+            var characters = _context.Characters
+                .Select(c => c)
+                .OrderByDescending(c => c.Exp)
+                .Take(10);
+
+            return characters.Select(c => new Business.Model.Character
+            {
+                Id = c.Id,
+                CharacterName = c.CharacterName,
+                Exp = c.Exp,
+                Health = c.Health,
+                Attack = c.Attack,
+                Defense = c.Defense,
+                Mana = c.Mana
+            });
+        }
+
         public void Save()
         {
             _context.SaveChanges();

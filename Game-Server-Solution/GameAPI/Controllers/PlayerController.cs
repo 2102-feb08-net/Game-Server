@@ -95,5 +95,11 @@ namespace GameAPI.Controllers
             _playerRepository.UpdateCharacterStats(character);
             _playerRepository.Save();
         }
+
+        [HttpGet("api/player/leaderboard")]
+        public IActionResult GetLeaderboard()
+        {
+            return Ok(_playerRepository.GetLeaderboard());
+        }
     }
 }

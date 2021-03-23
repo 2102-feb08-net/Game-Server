@@ -60,5 +60,11 @@ namespace Business.Interface
         /// Persists the changes onto the database
         /// </summary>
         void Save();
+
+        /// <summary>
+        /// Gets the top 10 characters by their exp amount
+        /// </summary>
+        /// <returns>IEnumerable of Character</returns>
+        IEnumerable<Character> GetLeaderboard();
     }
 }

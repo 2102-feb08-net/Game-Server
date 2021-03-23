@@ -26,6 +26,35 @@ namespace Tests.IntegrationTests
             return character;
         }
 
+        private List<Character> Create10Characters()
+        {
+            var character1 = CreateCharacter();
+            var character2 = CreateCharacter();
+            var character3 = CreateCharacter();
+            var character4 = CreateCharacter();
+            var character5 = CreateCharacter();
+            var character6 = CreateCharacter();
+            var character7 = CreateCharacter();
+            var character8 = CreateCharacter();
+            var character9 = CreateCharacter();
+            var character10 = CreateCharacter();
+            var character11 = CreateCharacter();
+            character1.Exp = 1;
+            character2.Exp = 2;
+            character3.Exp = 3;
+            character4.Exp = 4;
+            character5.Exp = 5;
+            character6.Exp = 6;
+            character7.Exp = 7;
+            character8.Exp = 8;
+            character9.Exp = 9;
+            character10.Exp = 10;
+            character11.Exp = 11;
+            List<Character> characters = new() { character1 , character2 , character3 , character4 , character5 , character6 ,
+                character7, character8, character9 , character10, character11};
+            return characters;
+        }
+
         private Player CreatePlayer(int? characterId)
         {
             var player = new Player
@@ -52,6 +81,7 @@ namespace Tests.IntegrationTests
         {
             var mob = new Mob
             {
+                Name = "Goblin",
                 LootTableId = lootTableId,
                 Health = 10,
                 Exp = 11,
@@ -287,6 +317,30 @@ namespace Tests.IntegrationTests
             Assert.Equal(insertedPlayer.Id, killStat.PlayerId);
             Assert.Equal(insertedMob.Id, killStat.MobId);
             Assert.Equal(1, killStat.Quantity);
+        }
+
+        [Fact]
+        public void GetLeaderboard_GetsTop10Characters()
+        {
+            //arrange
+            using var contextFactory = new Project2ContextFactory();
+            using Project2Context context = contextFactory.CreateContext();
+            List<Character> insertedCharacters = Create10Characters();
+            foreach(var character in insertedCharacters)
+            {
+                context.Characters.Add(character);
+            }
+            context.SaveChanges();
+            var repo = new PlayerRepository(context);
+
+            //act
+            List<Business.Model.Character> characters = repo.GetLeaderboard().ToList();
+
+            //assert
+            Assert.Equal(11, characters[0].Exp);
+            Assert.Equal(10, characters[1].Exp);
+            Assert.Equal(3, characters[8].Exp);
+            Assert.Equal(2, characters[9].Exp);
         }
 
         [Fact]
