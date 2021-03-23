@@ -79,4 +79,23 @@ stages:
         codeCoverageTool: 'Cobertura'
         summaryFileLocation: '$(Agent.TempDirectory)/*/coverage.cobertura.xml'
 
-
+  - job: deploy
+  
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: Publish
+      inputs:
+        command: publish
+        publishWebProjects: true
+        arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
+        zipAfterPublish: true
+    - task: AzureWebApp@1
+      inputs:
+        azureSubscription: 'Azure subscription 1(3e792589-b827-44e5-ba34-118283388b43)'
+        appType: 'webApp'
+        appName: 'reventure-game-server'
+        deployToSlotOrASE: true
+        resourceGroupName: '2102-training-rg'
+        slotName: 'production'
+        package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+        deploymentMethod: 'auto'
