@@ -4,98 +4,72 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-stages:
-- stage: build
+variables:
+  buildConfiguration: Release
+  appDirectory: Game-Server-Solution
 
-  variables:
-    buildConfiguration: Release
-    appDirectory: Game-Server-Solution
+steps:
+- task: UseDotNet@2
+  displayName: use dotnet sdk 5
+  inputs:
+    packageType: 'sdk'
+    version: '5.0.x'
 
-  jobs:
-  - job: build
+- task: UseDotNet@2
+  displayName: add dotnet runtime 2
+  inputs:
+    packageType: 'runtime'
+    version: '2.x'
 
-    steps:
-    - task: UseDotNet@2
-      displayName: use dotnet sdk 5
-      inputs:
-        packageType: 'sdk'
-        version: '5.0.x'
+- task: SonarCloudPrepare@1
+  displayName: sonar prepare analysis
+  inputs:
+    SonarCloud: 'sonarcloud-reventuregame'
+    organization: '2102-feb08-net'
+    scannerMode: 'MSBuild'
+    projectKey: '2102-feb08-net_Game-Server'
+    projectName: 'Game-Server'
+    extraProperties: 'sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/*/coverage.opencover.xml'
+
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: dotnet build
+  workingDirectory: $(appDirectory)
+
+- task: DotNetCoreCLI@2
+  displayName: dotnet test
+  inputs:
+    command: 'test'
+    arguments: '--configuration $(buildConfiguration) --collect "xplat code coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura,opencover'
+    workingDirectory: '$(appDirectory)'
+
+- task: SonarCloudAnalyze@1
+  displayName: sonar run analysis
+
+- task: SonarCloudPublish@1
+  displayName: publish sonar quality gate
+  inputs:
+    pollingTimeoutSec: '300'
+
+- task: PublishCodeCoverageResults@1
+  displayName: publish code coverage report
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(Agent.TempDirectory)/*/coverage.cobertura.xml'
     
-    - script: dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/app
-      displayName: dotnet publish
-      workingDirectory: $(appDirectory)
-    
-    - publish: $(Build.ArtifactStagingDirectory)/app
-      artifact: app
-      displayName: publish assemblies
-
-  - job: analyze
-
-    steps:
-    - task: UseDotNet@2
-      displayName: use dotnet sdk 5
-      inputs:
-        packageType: 'sdk'
-        version: '5.0.x'
-
-    - task: UseDotNet@2
-      displayName: add dotnet runtime 2
-      inputs:
-        packageType: 'runtime'
-        version: '2.x'
-
-    - task: SonarCloudPrepare@1
-      displayName: sonar prepare analysis
-      inputs:
-        SonarCloud: 'sonarcloud-reventuregame'
-        organization: '2102-feb08-net'
-        scannerMode: 'MSBuild'
-        projectKey: '2102-feb08-net_Game-Server'
-        projectName: 'Game-Server'
-        extraProperties: 'sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/*/coverage.opencover.xml'
-
-    - script: dotnet build --configuration $(buildConfiguration)
-      displayName: dotnet build
-      workingDirectory: $(appDirectory)
-
-    - task: DotNetCoreCLI@2
-      displayName: dotnet test
-      inputs:
-        command: 'test'
-        arguments: '--configuration $(buildConfiguration) --collect "xplat code coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura,opencover'
-        workingDirectory: '$(appDirectory)'
-
-    - task: SonarCloudAnalyze@1
-      displayName: sonar run analysis
-
-    - task: SonarCloudPublish@1
-      displayName: publish sonar quality gate
-      inputs:
-        pollingTimeoutSec: '300'
-
-    - task: PublishCodeCoverageResults@1
-      displayName: publish code coverage report
-      inputs:
-        codeCoverageTool: 'Cobertura'
-        summaryFileLocation: '$(Agent.TempDirectory)/*/coverage.cobertura.xml'
-
-  - job: deploy
-  
-    steps:
-    - task: DotNetCoreCLI@2
-      displayName: Publish
-      inputs:
-        command: publish
-        publishWebProjects: true
-        arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
-        zipAfterPublish: true
-    - task: AzureWebApp@1
-      inputs:
-        azureSubscription: 'Azure subscription 1(3e792589-b827-44e5-ba34-118283388b43)'
-        appType: 'webApp'
-        appName: 'reventure-game-server'
-        deployToSlotOrASE: true
-        resourceGroupName: '2102-training-rg'
-        slotName: 'production'
-        package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
-        deploymentMethod: 'auto'
+- task: DotNetCoreCLI@2
+  displayName: Publish
+  inputs:
+    command: publish
+    publishWebProjects: true
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
+    zipAfterPublish: true
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure subscription 1(3e792589-b827-44e5-ba34-118283388b43)'
+    appType: 'webApp'
+    appName: 'reventure-game-server'
+    deployToSlotOrASE: true
+    resourceGroupName: '2102-training-rg'
+    slotName: 'production'
+    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
