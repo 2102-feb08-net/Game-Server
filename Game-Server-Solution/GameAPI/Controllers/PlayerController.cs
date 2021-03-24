@@ -103,10 +103,11 @@ namespace GameAPI.Controllers
         /// <param name="exp"></param>
         /// <returns>A Task</returns>
         [HttpPut("api/character/update-exp/{characterId}/{exp}")]
-        public async Task UpdateCharacterExpAsync(int characterId, int exp)
+        public async Task<Character> UpdateCharacterExpAsync(int characterId, int exp)
         {
-            await _playerRepository.UpdateCharacterExpAsync(characterId, exp);
+            Character character = await _playerRepository.UpdateCharacterExpAsync(characterId, exp);
             _playerRepository.Save();
+            return character;
         }
 
         /// <summary>

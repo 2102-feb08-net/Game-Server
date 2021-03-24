@@ -180,15 +180,16 @@ namespace DataAccess.Repositories
             _context.SaveChanges();
         }
 
-        public async Task UpdateCharacterExpAsync(int characterId, int exp)
+        public async Task<Business.Model.Character> UpdateCharacterExpAsync(int characterId, int exp)
         {
             Character currentEntity = await _context.Characters.FindAsync(characterId);
+            var prevExp = currentEntity.Exp;
 
             var newEntity = new Character
             {
                 Id = currentEntity.Id,
                 CharacterName = currentEntity.CharacterName,
-                Exp = exp,
+                Exp = prevExp + exp,
                 Health = currentEntity.Health,
                 Attack = currentEntity.Attack,
                 Defense = currentEntity.Defense,
@@ -196,6 +197,17 @@ namespace DataAccess.Repositories
             };
 
             _context.Entry(currentEntity).CurrentValues.SetValues(newEntity);
+
+            return new Business.Model.Character
+            {
+                Id = currentEntity.Id,
+                CharacterName = currentEntity.CharacterName,
+                Exp = prevExp + exp,
+                Health = currentEntity.Health,
+                Attack = currentEntity.Attack,
+                Defense = currentEntity.Defense,
+                Mana = currentEntity.Mana
+            };
         }
     }
 }

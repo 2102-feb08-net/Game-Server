@@ -293,7 +293,7 @@ namespace Tests.IntegrationTests
             Character character = context.Characters.Local.Single(c => c.Id == insertedCharacter.Id);
             Assert.Equal(insertedCharacter.Id, character.Id);
             Assert.Equal(insertedCharacter.CharacterName, character.CharacterName);
-            Assert.Equal(20, character.Exp);
+            Assert.Equal(characterBeforeUpdate.Exp + 20, character.Exp);
             Assert.Equal(insertedCharacter.Health, character.Health);
             Assert.Equal(insertedCharacter.Attack, character.Attack);
             Assert.Equal(insertedCharacter.Mana, character.Mana);

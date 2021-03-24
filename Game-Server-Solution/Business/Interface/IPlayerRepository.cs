@@ -72,6 +72,6 @@ namespace Business.Interface
         /// </summary>
         /// <param name="characterId"></param>
         /// <param name="exp"></param>
-        Task UpdateCharacterExpAsync(int characterId, int exp);
+        Task<Character> UpdateCharacterExpAsync(int characterId, int exp);
     }
 }
