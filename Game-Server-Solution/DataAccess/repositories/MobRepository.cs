@@ -29,6 +29,7 @@ namespace DataAccess.Repositories
             return mobs.Select(m => new Business.Model.Mob
             {
                 Id = m.Id,
+                Mobid = m.Mobid,
                 Name = m.Name,
                 LootTableId = m.LootTableId,
                 Health = m.Health,

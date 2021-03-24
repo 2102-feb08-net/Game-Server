@@ -9,6 +9,7 @@ namespace Business.Model
     public class Mob
     {
         public int Id { get; set; }
+        public int? Mobid { get; set; }
         public string Name { get; set; }
         public int? LootTableId { get; set; }
         public int? Health { get; set; }
