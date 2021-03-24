@@ -81,6 +81,7 @@ namespace Tests.IntegrationTests
         {
             var mob = new Mob
             {
+                Mobid = 0,
                 Name = "Goblin",
                 LootTableId = lootTableId,
                 Health = 10,

@@ -36,6 +36,7 @@ namespace Tests.IntegrationTests
         {
             return new Mob()
             {
+                Mobid = 0,
                 Name = "Goblin",
                 LootTableId = lootTableId,
                 Health = 1,
@@ -160,7 +161,7 @@ namespace Tests.IntegrationTests
             var repo = new MobRepository(context);
 
             // act
-            Business.Model.Weapon weapon = repo.GetLoot(insertedMob.Id);
+            Business.Model.Weapon weapon = repo.GetLoot(insertedMob.Id - 1);
 
             // assert
             Assert.IsType<Business.Model.Weapon>(weapon);
