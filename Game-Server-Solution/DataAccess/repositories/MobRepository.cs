@@ -56,7 +56,7 @@ namespace DataAccess.Repositories
         public Business.Model.Weapon GetLoot(int mobId)
         {
             var mob = _context.Mobs
-                .First(m => m.Id == mobId);
+                .First(m => m.Mobid == mobId);
 
             var lootTable = _context.LootTables
                 .First(lt => lt.Id == mob.LootTableId);

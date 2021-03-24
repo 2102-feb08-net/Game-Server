@@ -264,6 +264,45 @@ namespace Tests.IntegrationTests
         }
 
         [Fact]
+        public async Task UpdateCharacterExpAsync_UpdatesCharacterExp()
+        {
+            //arrange
+            using var contextFactory = new Project2ContextFactory();
+            using Project2Context context = contextFactory.CreateContext();
+            Character characterBeforeUpdate = CreateCharacter();
+            Character insertedCharacter = new Character
+            {
+                Id = characterBeforeUpdate.Id,
+                CharacterName = characterBeforeUpdate.CharacterName,
+                Exp = characterBeforeUpdate.Exp,
+                Health = characterBeforeUpdate.Health,
+                Attack = characterBeforeUpdate.Attack,
+                Defense = characterBeforeUpdate.Defense,
+                Mana = characterBeforeUpdate.Mana
+
+            };
+            context.Characters.Add(insertedCharacter);
+            context.SaveChanges();
+            characterBeforeUpdate.Id = insertedCharacter.Id;
+            var repo = new PlayerRepository(context);
+
+            //act
+            await repo.UpdateCharacterExpAsync(insertedCharacter.Id, 20);
+
+            //assert
+            Character character = context.Characters.Local.Single(c => c.Id == insertedCharacter.Id);
+            Assert.Equal(insertedCharacter.Id, character.Id);
+            Assert.Equal(insertedCharacter.CharacterName, character.CharacterName);
+            Assert.Equal(20, character.Exp);
+            Assert.Equal(insertedCharacter.Health, character.Health);
+            Assert.Equal(insertedCharacter.Attack, character.Attack);
+            Assert.Equal(insertedCharacter.Mana, character.Mana);
+            Assert.Equal(characterBeforeUpdate.Id, character.Id);
+            Assert.Equal(characterBeforeUpdate.CharacterName, character.CharacterName);
+            Assert.NotEqual(characterBeforeUpdate.Exp, character.Exp);
+        }
+
+        [Fact]
         public void UpdateKillStat_UpdatesKillStat()
         {
             //arrange

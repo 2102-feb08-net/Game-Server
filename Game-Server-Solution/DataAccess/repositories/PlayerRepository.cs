@@ -179,5 +179,23 @@ namespace DataAccess.Repositories
         {
             _context.SaveChanges();
         }
+
+        public async Task UpdateCharacterExpAsync(int characterId, int exp)
+        {
+            Character currentEntity = await _context.Characters.FindAsync(characterId);
+
+            var newEntity = new Character
+            {
+                Id = currentEntity.Id,
+                CharacterName = currentEntity.CharacterName,
+                Exp = exp,
+                Health = currentEntity.Health,
+                Attack = currentEntity.Attack,
+                Defense = currentEntity.Defense,
+                Mana = currentEntity.Mana
+            };
+
+            _context.Entry(currentEntity).CurrentValues.SetValues(newEntity);
+        }
     }
 }

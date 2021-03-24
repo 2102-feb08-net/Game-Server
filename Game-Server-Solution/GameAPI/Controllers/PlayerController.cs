@@ -96,6 +96,23 @@ namespace GameAPI.Controllers
             _playerRepository.Save();
         }
 
+        /// <summary>
+        /// Updates the character's exp
+        /// </summary>
+        /// <param name="characterId"></param>
+        /// <param name="exp"></param>
+        /// <returns>A Task</returns>
+        [HttpPut("api/character/update-exp/{characterId}/{exp}")]
+        public async Task UpdateCharacterExpAsync(int characterId, int exp)
+        {
+            await _playerRepository.UpdateCharacterExpAsync(characterId, exp);
+            _playerRepository.Save();
+        }
+
+        /// <summary>
+        /// Gets top 10 characters based on exp
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("api/player/leaderboard")]
         public IActionResult GetLeaderboard()
         {

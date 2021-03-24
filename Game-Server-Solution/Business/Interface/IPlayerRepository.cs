@@ -66,5 +66,12 @@ namespace Business.Interface
         /// </summary>
         /// <returns>IEnumerable of Character</returns>
         IEnumerable<Character> GetLeaderboard();
+
+        /// <summary>
+        /// Updates the character's exp
+        /// </summary>
+        /// <param name="characterId"></param>
+        /// <param name="exp"></param>
+        Task UpdateCharacterExpAsync(int characterId, int exp);
     }
 }
